@@ -1,6 +1,9 @@
 import Formulario from "./Formulario"
+import useCotizador from "../hooks/useCotizador"
 
 export default function AppSeguro() {
+
+  const {resultado} = useCotizador()
 
   return (
     <>
@@ -9,6 +12,7 @@ export default function AppSeguro() {
         </header>
         <main className="bg-white md:w-2/3 lg:w-2/4 mx-auto shadow rounded-lg p-10">
             <Formulario/>
+            {resultado}
         </main>
     </>
   )
