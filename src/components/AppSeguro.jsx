@@ -1,6 +1,7 @@
 import Formulario from "./Formulario"
 
 export default function AppSeguro() {
+
   return (
     <>
         <header className="my-10">
