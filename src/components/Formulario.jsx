@@ -3,11 +3,15 @@ import { MARCAS, YEARS, PLANES } from '../constants'
 import CotizadorContext from '../context/CotizadorProvider'
 
 export default function Formulario() {
-const {hola, fnHola} = useContext(CotizadorContext)
-    console.log(hola)
-    fnHola()
+
+const {modal, cambiarState} = useContext(CotizadorContext)
+
   return (
     <>
+            <button
+                className='bg-slate-500'
+                onClick={cambiarState}
+            >Cambiar Modal de Context</button>
         <form>
             <div className="my-5">
                 <label className="block mb-3 font-bold text-gray-400 uppercase">
