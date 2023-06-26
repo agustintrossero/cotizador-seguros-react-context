@@ -4,8 +4,8 @@ import useCotizador from '../hooks/useCotizador'
 
 export default function Formulario() {
 
-const {modal, cambiarState} = useCotizador()
-console.log(modal)
+const {datos, handleChangeDatos} = useCotizador()
+
   return (
     <>
         <form>
@@ -13,7 +13,13 @@ console.log(modal)
                 <label className="block mb-3 font-bold text-gray-400 uppercase">
                     Marca
                 </label>
-                <select name="marca" id="" className="w-full p-3 bg-white border border-gray-200">
+                <select 
+                    name="marca" 
+                    id="" 
+                    className="w-full p-3 bg-white border border-gray-200"
+                    onChange={ e => handleChangeDatos(e)}
+                    value={datos.marca}
+                >
                     <option value="">-- Selecciona Marca --</option>
                     {MARCAS.map(marca=>(
                         <option
@@ -27,7 +33,13 @@ console.log(modal)
                 <label className="block mb-3 font-bold text-gray-400 uppercase">
                     Año
                 </label>
-                <select name="marca" id="" className="w-full p-3 bg-white border border-gray-200">
+                <select 
+                    name="year" 
+                    id="" 
+                    className="w-full p-3 bg-white border border-gray-200"
+                    onChange={ e => handleChangeDatos(e)}
+                    value={datos.year}
+                >
                     <option value="">-- Selecciona Año --</option>
                     {YEARS.map(year=>(
                         <option
@@ -45,12 +57,13 @@ console.log(modal)
                     {PLANES.map(plan=>(
                         <Fragment key={plan.id}>
                             <label>
-                                {plan.nombre}
+                                {plan.nombre}x
                             </label>
                             <input 
                                 type="radio" 
                                 name='plan'
                                 value={plan.id}
+                                onChange={ e => handleChangeDatos(e)}
                             />
                         </Fragment>
                     ))}
