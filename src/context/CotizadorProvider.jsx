@@ -5,10 +5,16 @@ const CotizadorContext = createContext()
 
 const CotizadorProvider = ({children}) => {
 
+    const hola = "hola mundo"
+    const fnHola = () => {
+        console.log("Hola Mundo desde una funcion")
+    }
+
     return(
         <CotizadorContext.Provider
             value={{
-                
+                hola: hola,
+                fnHola
             }}
         >
             {children}
