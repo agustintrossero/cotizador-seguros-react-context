@@ -72,7 +72,7 @@ const handleSubmit = e =>{
                     {PLANES.map(plan=>(
                         <Fragment key={plan.id}>
                             <label>
-                                {plan.nombre}x
+                                {plan.nombre}
                             </label>
                             <input 
                                 type="radio" 
