@@ -1,15 +1,40 @@
 import { Fragment } from 'react'
 import { MARCAS, YEARS, PLANES } from '../constants'
+import useCotizador from '../hooks/useCotizador'
+import Error from './Error'
 
 export default function Formulario() {
+
+const {datos, handleChangeDatos, error, setError, cotizarSeguro} = useCotizador()
+
+const handleSubmit = e =>{
+    e.preventDefault()
+    if(Object.values(datos).includes('')){
+        //console.error('Error, campos obligatorios')
+        setError('Error, Todos los campos obligatorios')
+        return
+    }
+    setError('')
+    cotizarSeguro()
+}
+
   return (
     <>
-        <form>
+        {error && <Error/>}
+        <form
+            onSubmit={handleSubmit}
+        >
             <div className="my-5">
                 <label className="block mb-3 font-bold text-gray-400 uppercase">
                     Marca
                 </label>
-                <select name="marca" id="" className="w-full p-3 bg-white border border-gray-200">
+                <select 
+                    name="marca" 
+                    id="" 
+                    className="w-full p-3 bg-white border border-gray-200"
+                    onChange={ e => handleChangeDatos(e)}
+                    value={datos.marca}
+                >
                     <option value="">-- Selecciona Marca --</option>
                     {MARCAS.map(marca=>(
                         <option
@@ -23,7 +48,13 @@ export default function Formulario() {
                 <label className="block mb-3 font-bold text-gray-400 uppercase">
                     Año
                 </label>
-                <select name="marca" id="" className="w-full p-3 bg-white border border-gray-200">
+                <select 
+                    name="year" 
+                    id="" 
+                    className="w-full p-3 bg-white border border-gray-200"
+                    onChange={ e => handleChangeDatos(e)}
+                    value={datos.year}
+                >
                     <option value="">-- Selecciona Año --</option>
                     {YEARS.map(year=>(
                         <option
@@ -47,6 +78,7 @@ export default function Formulario() {
                                 type="radio" 
                                 name='plan'
                                 value={plan.id}
+                                onChange={ e => handleChangeDatos(e)}
                             />
                         </Fragment>
                     ))}
